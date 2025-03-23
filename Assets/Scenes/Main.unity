@@ -159,6 +159,10 @@ MonoBehaviour:
   acceleration: 1
   deceleration: 1
   isReversing: 0
+  isColliding: 0
+  turnSpeed: 30
+  turnDamping: 0.1
+  angularDrag: 1
 --- !u!65 &190887392
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -170,8 +174,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1.803825, z: 9.701904}
-  m_Center: {x: 0, y: 0.4019125, z: 0.041015625}
+  m_Size: {x: 4.1990385, y: 1.803825, z: 9.20903}
+  m_Center: {x: -0.00055933, y: 0.4019125, z: -0.20542145}
 --- !u!54 &190887393
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -196,7 +200,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 190887390}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: -59.2, y: 0.6, z: 205}
+  m_LocalPosition: {x: -1.1, y: 0.6, z: 228}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -217,7 +221,7 @@ GameObject:
   - component: {fileID: 356860237}
   m_Layer: 0
   m_Name: Sunseeker
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -481,7 +485,7 @@ GameObject:
   - component: {fileID: 956635936}
   m_Layer: 0
   m_Name: Dock Collider
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -955,6 +959,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 60769dc7816dfdb44a4b863b5a7d3536, type: 2}
+    - target: {fileID: 3325670934280660494, guid: 480913ffcb0f79a478bbce5b2ee133c0,
+        type: 3}
+      propertyPath: m_TagString
+      value: Obstacle
+      objectReference: {fileID: 0}
     - target: {fileID: 3349143718089348780, guid: 480913ffcb0f79a478bbce5b2ee133c0,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
