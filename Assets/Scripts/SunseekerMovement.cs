@@ -7,30 +7,49 @@ public class SunseekerMovement : MonoBehaviour
 {
     // The 3 points in our quadratic bazier curve
     [SerializeField] private Transform startPoint, controlPoint, endPoint;
+    private int currentCurveIndex = 0;
 
     // Time variable ranging from 0 to 1
     private float t = 0f;
 
-    
+    private SunseekerCircuit sunseekerCircuit;
+
+    void Start()
+    {
+        sunseekerCircuit = GetComponent<SunseekerCircuit>();
+    }
+
     void Update()
     {
-        // Calculate the bezier curve and store it in a Vector3
-        Vector3 bezierPoint = CalculateBezierCurve(startPoint.position, controlPoint.position, endPoint.position, t);
+        // Create a bezier curve using an array of bezier curves, the current index, and the start, control and end points
+        Vector3 bezierCurve = CalculateBezierCurve(sunseekerCircuit.circuit[currentCurveIndex].startPoint.position, sunseekerCircuit.circuit[currentCurveIndex].controlPoint.position, sunseekerCircuit.circuit[currentCurveIndex].endPoint.position, t);
 
         // Apply the bezier curve to the boats position (using the boats y positon to ensure it stays in the right place
-        transform.position = new Vector3(bezierPoint.x, transform.position.y, bezierPoint.z);
+        transform.position = new Vector3(bezierCurve.x, transform.position.y, bezierCurve.z);
 
         // Slowly increase time variable over time
-        t += Time.deltaTime * 0.01f;
+        t += Time.deltaTime * 0.1f;
 
         // Resets time back to 0 if it exceeds 1
         if (t > 1f)
         {
             t = 0f;
+            // Moves onto the next bezier curve when we reach the end of the current one
+            currentCurveIndex++;
         }
 
+        if (currentCurveIndex >= sunseekerCircuit.circuit.Length)
+        {
+            // Reset the curve index back to 0 when it reaches the end of the array
+            currentCurveIndex = 0;
+        }
+        // Calculate the bezier curve and store it in a Vector3
+        Vector3 bezierPoint = CalculateBezierCurve(startPoint.position, controlPoint.position, endPoint.position, t);
+
+        
+
         // Calculate direction to look at (minus becuase it was initially facing the opposite way)
-        Vector3 direction = -(CalculateBezierCurve(startPoint.position, controlPoint.position, endPoint.position, t + 0.01f) - transform.position).normalized;
+        Vector3 direction = -(CalculateBezierCurve(sunseekerCircuit.circuit[currentCurveIndex].startPoint.position, sunseekerCircuit.circuit[currentCurveIndex].controlPoint.position, sunseekerCircuit.circuit[currentCurveIndex].endPoint.position, t + 0.01f) - transform.position).normalized;
 
         // Rotate the boat in the desired direction
         RotateBoat(direction);
