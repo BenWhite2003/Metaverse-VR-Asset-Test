@@ -14,8 +14,9 @@ public class DockingArea : MonoBehaviour
 
     // Reference to the powerboats game object to access its rotation for a portside check
     [SerializeField] private GameObject powerboat;
-    
-    // Update is called once per frame
+
+    public bool IsMissionComplete = false;
+
     void Update()
     {
         CheckDockingStatus();
@@ -23,8 +24,16 @@ public class DockingArea : MonoBehaviour
 
     private bool IsBoatPortside()
     {
-        // Checks if the power boats rotation is within 20f of 180f (portside)
-        return powerboat.transform.eulerAngles.y < 160f && powerboat.transform.eulerAngles.y > 200f;
+        // Checks if the power boat is portside by looking at its rotation with a buffer of 20f
+        // Its 180f becuase in this case that's portside to the dock
+        if (powerboat.transform.eulerAngles.y < 180f - 20f || powerboat.transform.eulerAngles.y > 180f + 20f)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
     }
 
     private void CheckDockingStatus()
@@ -35,8 +44,8 @@ public class DockingArea : MonoBehaviour
             timeInDock += Time.deltaTime;
             if (timeInDock > maxTimeInDock)
             {
-                // When it reaches max time in dock, debug a message for now
-                Debug.Log("Mission Compelte!");
+                // When it reaches max time in dock set a bool for the UI
+                IsMissionComplete = true;
             }
         }
         else

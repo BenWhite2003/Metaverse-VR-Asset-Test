@@ -10,12 +10,15 @@ public class PowerboatController : MonoBehaviour
     [SerializeField] private float maxReverseSpeed;
     [SerializeField] private float acceleration;
     [SerializeField] private float deceleration;
+
+    // Toggled by pressing R
     public bool isReversing = false;
+
+    // The direction the boat is moving in (world space)
     private Vector3 moveDirection;
 
     private bool isCollidingWithBoat = false;
     private bool isCollidingWithObstacle = false;
-
 
     [SerializeField] private float turnSpeed;
     private float turnInput;
