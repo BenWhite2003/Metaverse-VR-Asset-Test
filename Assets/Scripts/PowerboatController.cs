@@ -31,6 +31,7 @@ public class PowerboatController : MonoBehaviour
         HandleCollision();
         MoveBoat();
         SteerBoat();
+        
     }
 
     private void Accelerate()
@@ -130,27 +131,19 @@ public class PowerboatController : MonoBehaviour
         }
     }
 
-    //private void OnCollisionEnter(Collision collision)
-    //{
-    //    if (collision.collider.CompareTag("Obstacle"))
-    //    {
-    //        isColliding = true;
-    //    }
-    //    else
-    //    {
-    //        isColliding = false;
-    //    }
-    //}
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.collider.CompareTag("Obstacle"))
+        {
+            isColliding = !isColliding;
+        }
+    }
 
-    //private void OnCollisionExit(Collision collision)
-    //{
-    //    if (collision.collider.CompareTag("Obstacle"))
-    //    {
-    //        isColliding = false;
-    //    }
-    //    else
-    //    {
-    //        isColliding = true;
-    //    }
-    //}
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.collider.CompareTag("Obstacle"))
+        {
+            isColliding = !isColliding;
+        }
+    }
 }

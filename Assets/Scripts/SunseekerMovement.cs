@@ -1,14 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Timeline.Actions;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class SunseekerMovement : MonoBehaviour
 {
-    // The 3 points in our quadratic bazier curve
-    [SerializeField] private Transform startPoint, controlPoint, endPoint;
-
+    // Sunseeker Rigidbody so we can change the boats velocity
+    private Rigidbody sunseekerRB;
+   
     // Keeps track of what bezier curve we're on
     private int currentCurveIndex = 0;
 
@@ -17,7 +15,7 @@ public class SunseekerMovement : MonoBehaviour
 
     // The value we multiply delta time by to increase t
     // The lower the value (around <1) the slower it travels
-    [SerializeField] private float sunseekerSpeed;
+    [SerializeField] private float tIncrement;
 
     private SunseekerCircuit sunseekerCircuit;
 
@@ -30,6 +28,9 @@ public class SunseekerMovement : MonoBehaviour
     {
         // Get the Sunseeker Script to access circuit data
         sunseekerCircuit = GetComponent<SunseekerCircuit>();
+
+        // Get the Rigidbody from the Sunseeker
+        sunseekerRB = GetComponent<Rigidbody>();
     }
 
     void Update()
@@ -37,11 +38,14 @@ public class SunseekerMovement : MonoBehaviour
         // Create a bezier curve using an array of bezier curves, the current index, and the start, control and end points
         Vector3 bezierCurve = CalculateBezierCurve(sunseekerCircuit.circuit[currentCurveIndex].startPoint.position, sunseekerCircuit.circuit[currentCurveIndex].controlPoint.position, sunseekerCircuit.circuit[currentCurveIndex].endPoint.position, t);
 
-        // Apply the bezier curve to the boats position (using the boats y positon to ensure it stays in the right place
-        transform.position = new Vector3(bezierCurve.x, transform.position.y, bezierCurve.z);
+        // Create a direction using the bezier curve (using the boats y transform to ensure we stay at the correct y level)
+        Vector3 direction = new Vector3(bezierCurve.x, transform.position.y, bezierCurve.z);
+         
+        // Apply the direction minus the boats position to the velocity to move the boat through the curve
+        sunseekerRB.velocity = (direction - transform.position);
 
         // Slowly increase time variable (t) based on deltaTime and sunseeker speed
-        t += Time.deltaTime * sunseekerSpeed;
+        t += Time.deltaTime * tIncrement;
 
         // Resets time back to 0 if it exceeds 1 to go back to the start of the next bezier curve
         if (t > 1f)
