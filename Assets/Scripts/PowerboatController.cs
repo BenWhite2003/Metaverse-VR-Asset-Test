@@ -12,6 +12,7 @@ public class PowerboatController : MonoBehaviour
     [SerializeField] private float deceleration;
     public bool isReversing = false;
     private Vector3 moveDirection;
+    public bool isColliding;
 
 
     [SerializeField] private float turnSpeed;
@@ -35,7 +36,7 @@ public class PowerboatController : MonoBehaviour
     private void Accelerate()
     {
         // Check if the boat is in reverse gear
-        if (!isReversing)
+        if (!isReversing && !isColliding)
         {
             // Gradually increase the current speed towards max speed based on acceleration
             currentSpeed = Mathf.MoveTowards(currentSpeed, maxSpeed, acceleration * Time.deltaTime);
