@@ -358,7 +358,7 @@ GameObject:
   - component: {fileID: 190887392}
   - component: {fileID: 190887391}
   - component: {fileID: 190887395}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Powerboat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -413,8 +413,8 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
+  m_Constraints: 84
+  m_CollisionDetection: 1
 --- !u!4 &190887394
 Transform:
   m_ObjectHideFlags: 0
@@ -573,8 +573,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 253479468}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 30.3, y: 0, z: -38}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 9.399994, y: 0, z: 80.79999}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -662,6 +662,7 @@ GameObject:
   - component: {fileID: 356860240}
   - component: {fileID: 356860239}
   - component: {fileID: 356860241}
+  - component: {fileID: 356860242}
   m_Layer: 0
   m_Name: Sunseeker 1
   m_TagString: Obstacle
@@ -690,7 +691,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 356860236}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 28.67553, y: 0.26, z: 178.07477}
+  m_LocalPosition: {x: 7.7755127, y: 1.4954987, z: 296.87476}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -722,10 +723,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95931c2d855f79a4aabaee6cc2b6da35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startPoint: {fileID: 253479469}
-  controlPoint: {fileID: 2111923448}
-  endPoint: {fileID: 429363625}
-  sunseekerSpeed: 0.28
+  sunseekerSpeed: 30
+  tIncrement: 0.05
 --- !u!114 &356860241
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -751,6 +750,22 @@ MonoBehaviour:
   - startPoint: {fileID: 1366429629}
     controlPoint: {fileID: 419810530}
     endPoint: {fileID: 1858851839}
+--- !u!54 &356860242
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 356860236}
+  serializedVersion: 2
+  m_Mass: 500
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 116
+  m_CollisionDetection: 1
 --- !u!1 &395188770
 GameObject:
   m_ObjectHideFlags: 0
@@ -806,7 +821,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 419810529}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -321.6, y: 0, z: 83.8}
+  m_LocalPosition: {x: -546, y: 0, z: -26}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1382,7 +1397,7 @@ PrefabInstance:
     - target: {fileID: -4835654041993222452, guid: 6ab823508e370bf49813da3421d90427,
         type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -3234272799821893550, guid: 6ab823508e370bf49813da3421d90427,
         type: 3}
@@ -1402,7 +1417,7 @@ PrefabInstance:
     - target: {fileID: -782619492122931562, guid: 6ab823508e370bf49813da3421d90427,
         type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 159684580352330568, guid: 6ab823508e370bf49813da3421d90427,
         type: 3}
@@ -1417,17 +1432,17 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 6ab823508e370bf49813da3421d90427,
         type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1169521558740917425, guid: 6ab823508e370bf49813da3421d90427,
         type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2839744086164292346, guid: 6ab823508e370bf49813da3421d90427,
         type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4835951349805928252, guid: 6ab823508e370bf49813da3421d90427,
         type: 3}
@@ -1437,7 +1452,7 @@ PrefabInstance:
     - target: {fileID: 7018660077609005233, guid: 6ab823508e370bf49813da3421d90427,
         type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6ab823508e370bf49813da3421d90427, type: 3}
@@ -2615,6 +2630,7 @@ GameObject:
   - component: {fileID: 1071374587}
   - component: {fileID: 1071374586}
   - component: {fileID: 1071374585}
+  - component: {fileID: 1071374590}
   m_Layer: 0
   m_Name: Sunseeker 4
   m_TagString: Obstacle
@@ -2671,10 +2687,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95931c2d855f79a4aabaee6cc2b6da35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startPoint: {fileID: 253479469}
-  controlPoint: {fileID: 2111923448}
-  endPoint: {fileID: 429363625}
-  sunseekerSpeed: 0.28
+  sunseekerSpeed: 5
+  tIncrement: 0.1
 --- !u!65 &1071374588
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2704,6 +2718,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &1071374590
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1071374584}
+  serializedVersion: 2
+  m_Mass: 500
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 116
+  m_CollisionDetection: 1
 --- !u!1 &1073533061
 GameObject:
   m_ObjectHideFlags: 0
@@ -3327,7 +3357,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1321229391}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 172.7, y: 0, z: -462.7}
+  m_LocalPosition: {x: 187, y: 0, z: -526.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3575,6 +3605,7 @@ GameObject:
   - component: {fileID: 1508112860}
   - component: {fileID: 1508112859}
   - component: {fileID: 1508112858}
+  - component: {fileID: 1508112863}
   m_Layer: 0
   m_Name: Sunseeker 2
   m_TagString: Obstacle
@@ -3631,10 +3662,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95931c2d855f79a4aabaee6cc2b6da35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startPoint: {fileID: 253479469}
-  controlPoint: {fileID: 2111923448}
-  endPoint: {fileID: 429363625}
-  sunseekerSpeed: 0.28
+  sunseekerSpeed: 5
+  tIncrement: 0.1
 --- !u!65 &1508112861
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3664,6 +3693,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &1508112863
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1508112857}
+  serializedVersion: 2
+  m_Mass: 500
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 116
+  m_CollisionDetection: 1
 --- !u!1 &1516475687
 GameObject:
   m_ObjectHideFlags: 0
@@ -3688,7 +3733,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1516475687}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 296.5, y: 0, z: -309}
+  m_LocalPosition: {x: 389, y: 0, z: -397}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4045,7 +4090,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1858851838}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 30.3, y: 0, z: -38}
+  m_LocalPosition: {x: 9.4, y: 0, z: 80.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4096,6 +4141,7 @@ GameObject:
   - component: {fileID: 1893183249}
   - component: {fileID: 1893183248}
   - component: {fileID: 1893183247}
+  - component: {fileID: 1893183252}
   m_Layer: 0
   m_Name: Sunseeker 3
   m_TagString: Obstacle
@@ -4152,10 +4198,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95931c2d855f79a4aabaee6cc2b6da35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startPoint: {fileID: 253479469}
-  controlPoint: {fileID: 2111923448}
-  endPoint: {fileID: 429363625}
-  sunseekerSpeed: 0.28
+  sunseekerSpeed: 5
+  tIncrement: 0.1
 --- !u!65 &1893183250
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4185,6 +4229,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &1893183252
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1893183246}
+  serializedVersion: 2
+  m_Mass: 500
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 116
+  m_CollisionDetection: 1
 --- !u!1 &1907941748
 GameObject:
   m_ObjectHideFlags: 0
@@ -4274,7 +4334,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1935020463}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 172.7, y: 0, z: -462.7}
+  m_LocalPosition: {x: 187, y: 0, z: -526.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
