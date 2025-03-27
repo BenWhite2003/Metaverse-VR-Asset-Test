@@ -12,18 +12,19 @@ public class PowerboatController : MonoBehaviour
     [SerializeField] private float deceleration;
     public bool isReversing = false;
     private Vector3 moveDirection;
-    public bool isColliding;
+
+    private bool isCollidingWithBoat = false;
+    private bool isCollidingWithObstacle = false;
 
 
     [SerializeField] private float turnSpeed;
-    [SerializeField] private float angularDrag;
     private float turnInput;
+
     void Start()
     {
         // Get the Rigidbody component of the powerboat
         powerboatRB = GetComponent<Rigidbody>();
     }
-
 
     void Update()
     {
@@ -31,13 +32,12 @@ public class PowerboatController : MonoBehaviour
         HandleCollision();
         MoveBoat();
         SteerBoat();
-        
     }
 
     private void Accelerate()
     {
         // Check if the boat is in reverse gear
-        if (!isReversing && !isColliding)
+        if (!isReversing)
         {
             // Gradually increase the current speed towards max speed based on acceleration
             currentSpeed = Mathf.MoveTowards(currentSpeed, maxSpeed, acceleration * Time.deltaTime);
@@ -47,7 +47,6 @@ public class PowerboatController : MonoBehaviour
             // Gradually increase the current speed towards max reverse speed based on acceleration
             currentSpeed = Mathf.MoveTowards(currentSpeed, maxReverseSpeed, acceleration * Time.deltaTime);
         }
-        
     }
 
     private void Decelerate()
@@ -92,14 +91,7 @@ public class PowerboatController : MonoBehaviour
             // Apply rotational force using torque for smooth turning
             powerboatRB.AddTorque(transform.up * turnAmount, ForceMode.Acceleration);
         }
-
-        // Apply angular drag to prevent infinite spinning and stabilize turning
-        powerboatRB.angularDrag = angularDrag;
-        
     }
-
-   
-
 
     private void HandleInput()
     {
@@ -125,25 +117,38 @@ public class PowerboatController : MonoBehaviour
 
     private void HandleCollision()
     {
-        if (isColliding)
+        if (isCollidingWithBoat)
         {
+            // If we collide with a sunseeker then slow down the powerboats current speed
             Decelerate();
+        }
+        else if (isCollidingWithObstacle)
+        {
+            // If we collide with the island or the dock then we completely stop the powerboat
+            currentSpeed = 0f;
+            // Set colliding back to false so the powerboat doesn't get stuck on the obstacle forever
+            isCollidingWithObstacle = false;
         }
     }
 
     private void OnCollisionEnter(Collision collision)
     {
+        if (collision.collider.CompareTag("Sunseeker"))
+        {
+            isCollidingWithBoat = true;
+        }
+
         if (collision.collider.CompareTag("Obstacle"))
         {
-            isColliding = !isColliding;
+            isCollidingWithObstacle = true;
         }
     }
 
     private void OnCollisionExit(Collision collision)
     {
-        if (collision.collider.CompareTag("Obstacle"))
+        if (collision.collider.CompareTag("Sunseeker"))
         {
-            isColliding = !isColliding;
+            isCollidingWithBoat = false;
         }
     }
 }
