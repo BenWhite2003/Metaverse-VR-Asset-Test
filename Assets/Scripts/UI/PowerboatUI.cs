@@ -11,7 +11,7 @@ public class PowerboatUI : MonoBehaviour
     [SerializeField] private PowerboatController powerBoatController;
     [SerializeField] private GameObject missionCompletePanel;
     [SerializeField] private TextMeshProUGUI currentSpeedText;
-    [SerializeField] private TextMeshProUGUI reverseText;
+    [SerializeField] private TextMeshProUGUI reverseIndicatorText;
     [SerializeField] private GameObject resetButton;
     void Update()
     {
@@ -60,11 +60,11 @@ public class PowerboatUI : MonoBehaviour
         // Toggles reverse text colour to show the player if they are reversing
         if (powerBoatController.isReversing)
         {
-            reverseText.color = Color.green;
+            reverseIndicatorText.color = Color.green;
         }
         else
         {
-            reverseText.color = Color.white;
+            reverseIndicatorText.color = Color.white;
         }
     }
 }

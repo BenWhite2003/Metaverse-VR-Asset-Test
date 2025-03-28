@@ -41,10 +41,10 @@ public class SunseekerMovement : MonoBehaviour
         // Create a direction using the bezier curve (using the boats y transform to ensure we stay at the correct y level)
         Vector3 direction = new Vector3(bezierCurve.x, transform.position.y, bezierCurve.z);
          
-        // Apply the direction minus the boats position to the velocity to move the boat through the curve
+        // Apply the direction (minus the boats position) to the velocity to move the boat through the curve
         sunseekerRB.velocity = (direction - transform.position);
 
-        // Slowly increase time variable (t) based on deltaTime and sunseeker speed
+        // Slowly increase time variable (t) based on deltaTime and t increment
         t += Time.deltaTime * tIncrement;
 
         // Resets time back to 0 if it exceeds 1 to go back to the start of the next bezier curve
@@ -57,7 +57,7 @@ public class SunseekerMovement : MonoBehaviour
 
         if (currentCurveIndex >= sunseekerCircuit.circuit.Length)
         {
-            // Reset the curve index back to 0 when it reaches the end of the array
+            // Reset the curve index back to 0 when it reaches the end of the array to ensure they loop
             currentCurveIndex = 0;
         }
 
@@ -115,6 +115,7 @@ public class SunseekerMovement : MonoBehaviour
             // If we're getting close to the end of the curve (t >= 0.5), blend the rotation towards the next curve
             // Smoothly blend the rotation between the current curve's rotation and the next curve's rotation
             // Blend factor increases as t gets closer to 1
+            // The bigger the first number (0.9f) the smoother the transition is
             float blendFactor = Mathf.SmoothStep(0, 1, (t - 0.9f) / 0.1f);
 
             // Apply the blended rotation
