@@ -11,6 +11,6 @@ public struct BezierCurve
 }
 public class SunseekerCircuit : MonoBehaviour
 {
-    // List of bezier curves that make up a circuit
+    // Array of Bezier curves that represent the circuit path
     public BezierCurve[] circuit;
 }

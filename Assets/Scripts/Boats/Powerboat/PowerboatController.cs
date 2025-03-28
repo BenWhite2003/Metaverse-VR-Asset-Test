@@ -17,11 +17,15 @@ public class PowerboatController : MonoBehaviour
     // The direction the boat is moving in (world space)
     private Vector3 moveDirection;
 
+    // Collisions checks
     private bool isCollidingWithBoat = false;
     private bool isCollidingWithObstacle = false;
 
     [SerializeField] private float turnSpeed;
     private float turnInput;
+
+    // Used by the turning method to ensure we have some turning even at high speeds
+    [SerializeField] private float minTurnFactor = 0.3f;
 
     void Start()
     {
@@ -79,9 +83,6 @@ public class PowerboatController : MonoBehaviour
         // Checks if we are getting steering input and ensures the boat is moving before allowing steering
         if (turnInput != 0 && currentSpeed >= 1f)
         {
-            // Ensures some turning even at high speeds
-            float minTurnFactor = 0.3f;
-
             // Turning is stronger at low speeds and weaker at high speeds
             float speedFactor = Mathf.Max(1 - (currentSpeed / maxSpeed), minTurnFactor);
 
@@ -107,8 +108,8 @@ public class PowerboatController : MonoBehaviour
             Decelerate();
         }
 
-        // Checks for R key press and if the boat is near stationary (speed < 0.1) to avoid switching gears while the boat is moving
-        if (Input.GetKeyDown(KeyCode.R) && Mathf.Abs(currentSpeed) < 0.1f)
+        // Checks for R key press and if the boat is stationary to avoid switching gears while the boat is moving
+        if (Input.GetKeyDown(KeyCode.R) && Mathf.Abs(currentSpeed) == 0)
         {
             // Toggle reverse gear
             isReversing = !isReversing; 

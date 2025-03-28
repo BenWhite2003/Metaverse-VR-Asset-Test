@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class DockingArea : MonoBehaviour
 {
+    // Bool to keep track of docking status
     public bool playerIsDocked = false;
 
     // Timer for the powerboat being in the dock area
@@ -34,6 +35,7 @@ public class DockingArea : MonoBehaviour
         {
             return true;
         }
+        // If we had multiple docks with different orientations then we could look at the rotation of that and compare it to our boats rotation
     }
 
     private void CheckDockingStatus()
